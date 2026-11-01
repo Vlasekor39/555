@@ -12,20 +12,17 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up JDK 17
-        # v5 вместо v4: v4 deprecated и больше не обновляется
         uses: actions/setup-java@v5
         with:
           java-version: '17'
           distribution: 'temurin'
 
       - name: Setup Gradle
-        # v4 вместо v3: лучше совместимость с текущими раннерами
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.5'
 
       - name: Build Debug APK
-        # ./gradlew вместо gradle: так вызывается wrapper, меньше шансов на рассинхрон версий
         run: ./gradlew assembleDebug --no-daemon
 
       - name: Upload Ready APK
